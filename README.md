@@ -1,6 +1,5 @@
 ```
-pip install torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
-pip install torchvision --extra-index-url https://download.pytorch.org/whl/cu124
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
 # F5-TTS: A Fairytaler that Fakes Fluent and Faithful Speech with Flow Matching
