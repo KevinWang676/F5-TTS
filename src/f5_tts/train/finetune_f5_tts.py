@@ -1397,11 +1397,11 @@ def get_audio_select(file_sample):
 with gr.Blocks() as app:
     gr.Markdown(
         """
-# F5-TTS 一键微调训练 全网最简单教程 🤯
+# <center>F5-TTS 一键微调训练 全网最简单教程 🤯
 
-### 只需1分钟语音，一键微调完美声音复刻！开启最真实自然的声音克隆！🥳
+## <center>只需1分钟语音，一键微调完美声音复刻！开启最真实自然的声音克隆！🥳
 
-### 使用[书梦](https://www.doingdream.com)在线一键推理，最好用的一站式AI服务平台 🪄
+### <center>使用[书梦](https://www.doingdream.com)在线一键推理，最好用的一站式AI服务平台 🪄
 
 """
     )
@@ -1443,7 +1443,7 @@ with gr.Blocks() as app:
             )
 
             audio_speaker = gr.File(label="语音", type="filepath", file_count="multiple")
-            txt_lang = gr.Textbox(label="语言", value="English")
+            txt_lang = gr.Textbox(label="语言", info="如果上传语音为中文，请在下方填写Chinese；如果为英文，请填写English。默认为中文。", value="Chinese")
             bt_transcribe = bt_create = gr.Button("转录")
             txt_info_transcribe = gr.Textbox(label="信息", value="")
             bt_transcribe.click(
@@ -1470,7 +1470,7 @@ with gr.Blocks() as app:
 检查用于微调Emilia_ZH_EN的词汇表，确保包含所有符号。适用于微调新语言。
 ```""")
 
-            check_button = gr.Button("检查词汇")
+            check_button = gr.Button("检查词汇(可跳过)")
             txt_info_check = gr.Textbox(label="信息", value="")
 
             gr.Markdown("""```plaintext 
@@ -1564,7 +1564,7 @@ with gr.Blocks() as app:
                 bt_calculate = bt_create = gr.Button("自动设置")
 
             with gr.Row():
-                epochs = gr.Number(label="训练轮数")
+                epochs = gr.Number(label="训练轮数", value=100)
                 learning_rate = gr.Number(label="学习率", step=0.5e-5)
                 max_grad_norm = gr.Number(label="最大梯度范数")
                 num_warmup_updates = gr.Number(label="预热更新次数")
@@ -1586,6 +1586,7 @@ with gr.Blocks() as app:
                     label="每N次更新保存",
                     info="每N次更新保存中间检查点",
                     minimum=10,
+                    value=20,
                 )
                 keep_last_n_checkpoints = gr.Number(
                     label="保留最后N个检查点",
@@ -1598,6 +1599,7 @@ with gr.Blocks() as app:
                     label="每N次更新保存最新",
                     info="每N次更新保存带有_last.pt后缀的最新检查点",
                     minimum=10,
+                    value=50,
                 )
                 gr.Radio(label="")  # placeholder
 
