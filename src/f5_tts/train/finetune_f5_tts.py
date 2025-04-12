@@ -1397,16 +1397,12 @@ def get_audio_select(file_sample):
 with gr.Blocks() as app:
     gr.Markdown(
         """
-# F5 TTS 自动微调
+# F5-TTS 一键微调训练 全网最简单教程 🤯
 
-这是一个用于F5 TTS微调支持的本地网页界面。此应用支持以下TTS模型：
+### 只需1分钟语音，一键微调完美声音复刻！开启最真实自然的声音克隆！🥳
 
-* [F5-TTS](https://arxiv.org/abs/2410.06885) (一个使用流匹配技术创建流畅且忠实语音的语音合成器)
-* [E2 TTS](https://arxiv.org/abs/2406.18009) (极其简易的完全非自回归零样本TTS)
+### 使用[书梦](https://www.doingdream.com)在线一键推理，最好用的一站式AI服务平台 🪄
 
-预训练检查点支持英语和中文。
-
-教程和更新请查看这里 (https://github.com/SWivid/F5-TTS/discussions/143)
 """
     )
 
