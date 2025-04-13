@@ -1397,9 +1397,9 @@ def get_audio_select(file_sample):
 with gr.Blocks() as app:
     gr.Markdown(
         """
-# <center>F5-TTS 一键微调训练 全网最简单教程 🤯
+# <center>🤯🎶⭐ F5-TTS 一键微调训练 全网最简单教程
 
-## <center>只需1分钟语音，一键微调完美声音复刻！开启最真实自然的声音克隆！🥳
+## <center>🥳 只需1分钟语音，一键微调完美声音复刻！开启最真实自然的声音克隆！
 
 ### <center>使用[书梦](https://www.doingdream.com)在线一键推理，最好用的一站式AI服务平台 🪄
 
@@ -1564,7 +1564,7 @@ with gr.Blocks() as app:
                 bt_calculate = bt_create = gr.Button("自动设置")
 
             with gr.Row():
-                epochs = gr.Number(label="训练轮数", value=100)
+                epochs = gr.Number(label="训练轮数", value=10)
                 learning_rate = gr.Number(label="学习率", step=0.5e-5)
                 max_grad_norm = gr.Number(label="最大梯度范数")
                 num_warmup_updates = gr.Number(label="预热更新次数")
@@ -1575,18 +1575,18 @@ with gr.Blocks() as app:
                     choices=["frame", "sample"],
                     info="frame计算方式为：秒 * 采样率 / 跳跃长度",
                 )
-                batch_size_per_gpu = gr.Number(label="每GPU批量大小", info="N帧或N个样本")
+                batch_size_per_gpu = gr.Number(label="每GPU批量大小", info="N帧或N个样本", value=4987)
                 grad_accumulation_steps = gr.Number(
                     label="梯度累积步数", info="有效批量大小乘以此值"
                 )
-                max_samples = gr.Number(label="最大样本数", info="单个GPU批次的最大样本数")
+                max_samples = gr.Number(label="最大样本数", info="单个GPU批次的最大样本数", value=3)
 
             with gr.Row():
                 save_per_updates = gr.Number(
                     label="每N次更新保存",
                     info="每N次更新保存中间检查点",
                     minimum=10,
-                    value=20,
+                    value=5,
                 )
                 keep_last_n_checkpoints = gr.Number(
                     label="保留最后N个检查点",
@@ -1599,7 +1599,7 @@ with gr.Blocks() as app:
                     label="每N次更新保存最新",
                     info="每N次更新保存带有_last.pt后缀的最新检查点",
                     minimum=10,
-                    value=50,
+                    value=10,
                 )
                 gr.Radio(label="")  # placeholder
 
