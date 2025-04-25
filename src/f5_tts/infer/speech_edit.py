@@ -9,6 +9,7 @@ import torch.nn.functional as F
 import torchaudio
 from hydra.utils import get_class
 from omegaconf import OmegaConf
+from cached_path import cached_path
 
 from f5_tts.infer.utils_infer import load_checkpoint, load_vocoder, save_spectrogram
 from f5_tts.model import CFM
@@ -55,7 +56,8 @@ win_length = model_cfg.model.mel_spec.win_length
 n_fft = model_cfg.model.mel_spec.n_fft
 
 
-ckpt_path = str(files("f5_tts").joinpath("../../")) + f"ckpts/{exp_name}/model_{ckpt_step}.safetensors"
+# ckpt_path = str(files("f5_tts").joinpath("../../")) + f"/ckpts/{exp_name}/model_{ckpt_step}.safetensors"
+ckpt_path = str(cached_path(f"hf://SWivid/F5-TTS/{exp_name}/model_{ckpt_step}.safetensors"))
 output_dir = "tests"
 
 
@@ -152,7 +154,7 @@ for part in parts_to_edit:
         dim=-1,
     )
     offset = end * target_sample_rate
-# audio = torch.cat((audio_, audio[:, round(offset):]), dim = -1)
+audio = torch.cat((audio_, audio[:, round(offset) :]), dim=-1)
 edit_mask = F.pad(edit_mask, (0, audio.shape[-1] // hop_length - edit_mask.shape[-1] + 1), value=True)
 audio = audio.to(device)
 edit_mask = edit_mask.to(device)
